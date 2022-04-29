@@ -18,71 +18,87 @@ public class Main {
 	
 		//Read Command Line Arguments
 		
-		int files = 0; // showing the number of Command Line Arguments that are file
-		String input = " ";
-	    String output = " ";
-	    String inputType =" ";
-	    String operations= " ";
+		int files = 0;// showing the number of Command Line Arguments that are file
+		String[] claArray = {"--input", "Input.txt","--inputtype","String","int","--operations","rev" ,"Capitalize","Neg","--threads","1","--output","Output.txt"};
+		// input = " ";    --input claArray[0]
+		String inputFileName = " ";  //input.txt claArray[1]
 		
-		     //Read the Command Line Arguments
+		//inputType = " "  --inputtype  c;laArray[2]
+		String inputfileTypeString = claArray[3];
+		String inputInfileTypeInt = claArray[4];
+		
+        //operations =" " --Operations claArray[5]
+		
+		String optRevorCaps = claArray[6];
+		String optRevAndCaps = claArray[7];
+		String optNegate = claArray[8];
+
+		//threads = " " --number of threads claArray[9]
+		
+		String threads = claArray[10];
+		
+		//outputType = " "  --outputType  c;laArray[11]
+		String outputFileName = claArray[12];
+		
+		 //Read the Command Line Arguments
 		     
 		     for(int i = 0; i < args.length; i++){
-		         String arg = args[i];
-		         //String[] myArr = [--input, Input.txt, --inputtype, int, --operations, neg,rev
-		         //, --threads, 1, --output, Output.txt]
-		         var inputFileType = myArr[0];
-		         var inputFileName = myArr[1]
-		         var inputType = myArr[2];
-		         var inputTypeName = myArr[3]
-		        		 
-		         if(Character.isDigit(arg.charAt(i))){
-		             return;
-		         }
-		         
-		         else{  //it will show that it is file name
-		             files++;}
-		             
-		             if(files == 1){
-		            	 input = arg;
-		                 
+	         String arg = args[i];
+             //it will show that it is files
+             files++;
+             
+	             if(files == 2){
+            	 inputFileName = arg;	                 
+             }	
+	             else if(files == 10){
+	            	 outputFileName = arg;
 		             }
-		             
-		             else if(files == 2){
-		            	 inputType = arg;
-		             }
-		             else if(files == 3){
-		            	 operations = arg;
-		             }
-		             else if(files == 4){
-		            	 output = arg;
-		             }
-		           
-		             
-		         
 		     }
-		     if(inputType instanceof String){
-		    	 System.out.println("hellop");
+		     
+		     
+	             
+		    // inputFileName = args[2];
+		     File file = new File(inputFileName);
+		     if(inputfileTypeString instanceof String) {
 		    	//Reading and Writing from File
-			     if(String.valueOf(operations) == "reverse") {    	 
-			     System.out.println("Hello");
-			     File file = new File(input);
-			     
-			     //Open the file, Perform the operations(Capitalize, Reverse) and add it to the list
+		  	 
+			 //Open the file, Perform the operations(Capitalize, Reverse) and add it to the list
 			     
 			     try{
 			         
 			         Scanner in = new Scanner(file);
 			         while(in.hasNextLine()){
 			             String line = in.nextLine();
-			             String reverse = reverseString(line);
-			             lines.add(reverse);
+			             if (in.hasNextInt()) { // check if next token is an int
+			                 System.out.print(in.nextInt()); // display the found integer
+			             } 
+			             if(args[5] == "rev") {
+			             System.out.println("same");
+			            // String reverse = reverseString(line);
+			            // lines.add(reverse);
+			             
+			             
+			             
+			             }
+			             if(optRevorCaps == args[7]) {
 			             String capLine = line.toUpperCase();
 			             lines.add(capLine);
-			            
+			             }
+			             
+//			             else {
+//			            	 String reverse = reverseString(line);
+//				             lines.add(reverse);
+//				             String capLine = line.toUpperCase();
+//				             lines.add(capLine);
+//				             System.out.println(args[5]);
+//			             }
 	    		         }
 			         
 			         in.close();
+			     
 			     }
+		     
+			     
 			     catch(IOException e)
 	                 {
 	                    e.printStackTrace();
@@ -91,7 +107,7 @@ public class Main {
 
 			     
 			     try{
-			         PrintWriter out = new PrintWriter(output);
+			         PrintWriter out = new PrintWriter(outputFileName);
 			         lines.forEach((line)->
 			         {
 			             out.println(line);
@@ -108,12 +124,13 @@ public class Main {
 	                    System.exit(0);
 	                 }
 			     
-			
-		     }
-		     }
+			     }
 		     
 		     
-	}	
+		     
+		     
+		     
+		     }
 		     
 		     static String reverseString(String str)
 		     {
