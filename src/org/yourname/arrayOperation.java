@@ -12,7 +12,7 @@ public class MyClass {
      ArrayList<String> lines = new ArrayList<>();
      String output = "";
     //  int num =123;
-     String text ="rrr";
+     String text ="";
      
      int files = 0; // showing the numnber of Command Line Arguments that are file
 		String inFile = " ";
@@ -43,47 +43,50 @@ public class MyClass {
 		         while(in.hasNextLine()){
 		             String line = in.nextLine();
 		             if(inputType.equals("int") ) {
- 		        num=line;
- 		      if(operations.contains("rev")) {
- 		          
- 		          output = String.valueOf(reverseNumber(Integer.parseInt(num)));
- 		          System.out.println("rev" + "" + output);
- 		          lines.add(output);
- 		      }
- 		      
- 		      if(operations.contains("neg")) {
- 		        int negativenumber = Integer.parseInt(output)*-1;
-		        String negativeNumber = String.valueOf(negativenumber);
-		        output = negativeNumber;
-		         		          System.out.println("neg" + "" + output);
-
- 		        
- 		      }
+         		        num=line;
+         		        output=num;
+         		      if(operations.contains("rev")) {
+         		          
+         		          output = String.valueOf(reverseNumber(Integer.parseInt(num)));
+         		          System.out.println("rev" + "" + output);
+         		          lines.add(output);
+         		      }
+         		      
+         		      if(operations.contains("neg")) {
+         		        int negativenumber = Integer.parseInt(output)*-1;
+        		        String negativeNumber = String.valueOf(negativenumber);
+        		        output = negativeNumber;
+        		         		          System.out.println("neg" + "" + output);
+        
+         		        
+         		      }
  		       		System.out.println(output);  
 
  		      
  		    
- 		}
+ 		            }
  		
 		             
       
  		
- 			if(inputType.equals("String") ) {
- 		    
- 		      if(operations.contains("rev")) {
- 		          
- 		          output = output + reverseString(text);
- 		      }
- 		      
- 		      if(operations.contains("cap")) {
- 		         output = output + text.toUpperCase();
- 		        
- 		      }
- 		       		System.out.println(output);  
-
- 		      
- 		    
- 		}
+         			if(inputType.equals("String") ) {
+         			    text = line;
+         			    output=text;
+         		    
+         		      if(operations.contains("rev")) {
+         		          
+         		          output = reverseString(text);
+         		      }
+         		      
+         		      if(operations.contains("cap")) {
+         		         output = output.toUpperCase();
+         		        
+         		      }
+         		       		System.out.println(output);  
+        
+         		      
+         		    
+         	    	}
 		         }
  	
 
