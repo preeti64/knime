@@ -1,39 +1,27 @@
- package org.yourname;
- import java.io.IOException;
- import java.util.ArrayList;
- import java.io.File;
- import java.io.FileWriter;
- import java.util.Scanner;
- import java.io.PrintWriter;
- import java.util.Arrays;
+package org.yourname;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner; 
+import java.io.PrintWriter;
+import java.util.Arrays;
+public class MyClass {
 
- /**
-  * Main class.
-  * 
-  * @author KNIME GmbH
-  */
- public class Main {
-
-     public static void main(String args[]) {
-         ArrayList < String > lines = new ArrayList < > ();
-         String output = "";
+    public static void main(String[] args) throws InterruptedException {
+            ArrayList<String> lines = new ArrayList<>();
+            for (int i = 0; i < 4; i++) {
+                        new Thread(new SubReadThread(lines)).start();
+                    }
+                    
+     @Override
+    public void run() {
+        String output = "";
          String text = "";
+         System.out.println(args);
+         String inFile = args[1];
+         String outFile = args[9];
 
-         int files = 0; // showing the number of Command Line Arguments that are file
-         String inFile = " ";
-         String outFile = " ";
-
-         for (int i = 0; i < args.length; i++) {
-             String arg = args[i];
-             files++;
-
-             if (files == 2) {
-                 inFile = arg;
-
-             } else if (files == 10) {
-                 outFile = arg;
-             }
-         }
 
 
          String inputType = args[3];
@@ -99,8 +87,10 @@
              System.exit(0);
          }
      }
+                    
+                }
 
-     static int reverseNumber(int number) {
+    static int reverseNumber(int number) {
          int reverse = 0;
          while (number != 0) {
              int remainder = number % 10;
@@ -119,4 +109,18 @@
          return reversedStr;
 
      }
- }
+}
+ 
+
+
+class SubReadThread implements Runnable {
+    private final ArrayList<String> lines;
+
+    public SubReadThread(ArrayList<String> lines) {
+        this.lines = lines;
+    }
+
+    
+    }
+
+
