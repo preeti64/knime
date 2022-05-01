@@ -12,34 +12,20 @@
   * 
   * @author KNIME GmbH
   */
- public class Main {
+ public class Main{
 
      public static void main(String args[]) {
-         ArrayList < String > lines = new ArrayList < > ();
+         ArrayList<String> lines = new ArrayList<>();
          String output = "";
          String text = "";
 
-         int files = 0; // showing the number of Command Line Arguments that are file
-         String inFile = " ";
-         String outFile = " ";
-
-         for (int i = 0; i < args.length; i++) {
-             String arg = args[i];
-             files++;
-
-             if (files == 2) {
-                 inFile = arg;
-
-             } else if (files == 10) {
-                 outFile = arg;
-             }
-         }
-
-
+         String inFile = args[1];
+         String outFile = args[9];
          String inputType = args[3];
 
          String operations = args[5];
          File file = new File(inFile);
+
          try {
              String num = "";
              Scanner in = new Scanner(file);
@@ -49,7 +35,6 @@
                      num = line;
                      output = num;
                      if (operations.contains("rev")) {
-
                          output = String.valueOf(reverseNumber(Integer.parseInt(num)));
                      }
 
@@ -62,7 +47,7 @@
                      lines.add(output);
                  }
 
-                 if (inputType.equals("String")) {
+                 if (inputType.equals("string")) {
                      text = line;
                      output = text;
 
@@ -119,4 +104,6 @@
          return reversedStr;
 
      }
+     
+
  }
