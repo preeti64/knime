@@ -10,6 +10,9 @@ public class MyClass {
      String[] claArray = args;
      System.out.println(Arrays.toString(claArray));
      ArrayList<String> lines = new ArrayList<>();
+     String output = "";
+    //  int num =123;
+     String text ="rrr";
      
      int files = 0; // showing the numnber of Command Line Arguments that are file
 		String inFile = " ";
@@ -35,21 +38,25 @@ public class MyClass {
      String operations = args[5];
       File file = new File(inFile);
       try{
-          
+          String num ="";
            Scanner in = new Scanner(file);
 		         while(in.hasNextLine()){
 		             String line = in.nextLine();
 		             if(inputType.equals("int") ) {
- 		    
+ 		        num=line;
  		      if(operations.contains("rev")) {
  		          
- 		          output = output + reverseNumber(num);
+ 		          output = String.valueOf(reverseNumber(Integer.parseInt(num)));
+ 		          System.out.println("rev" + "" + output);
+ 		          lines.add(output);
  		      }
  		      
  		      if(operations.contains("neg")) {
- 		        int negativenumber = num*-1;
+ 		        int negativenumber = Integer.parseInt(output)*-1;
 		        String negativeNumber = String.valueOf(negativenumber);
-		        output = output + negativeNumber;
+		        output = negativeNumber;
+		         		          System.out.println("neg" + "" + output);
+
  		        
  		      }
  		       		System.out.println(output);  
