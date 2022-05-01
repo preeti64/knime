@@ -31,7 +31,7 @@
              Scanner in = new Scanner(file);
              while ( in .hasNextLine()) {
                  String line = in .nextLine();
-                 if (inputType.equals("int")) {
+                 if (inputType.equals("int") || (inputType.equals("double"))) {
                      num = line;
                      output = num;
                      if (operations.contains("rev")) {
