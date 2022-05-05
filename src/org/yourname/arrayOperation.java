@@ -1,4 +1,3 @@
- package org.preeti;
  import java.io.IOException;
  import java.util.ArrayList;
  import java.io.File;
@@ -12,9 +11,30 @@
   * 
   * @author KNIME GmbH
   */
- public class Main{
-
+ public class MyClass{
+     
+     private static String[] savedArgs;
+     public static String[] getArgs() {
+         
+        return savedArgs;
+        
+    }
+        
      public static void main(String args[]) {
+         
+        savedArgs = args;
+        ClaOperations  claOperations = new ClaOperations();
+        claOperations.run(); 
+        
+     }
+ }
+        class ClaOperations {//extends Thread  
+            
+           void run(){
+               
+           
+         String[] args = MyClass.getArgs();
+         
          ArrayList<String> lines = new ArrayList<>();
          String output = "";
          String text = "";
@@ -24,9 +44,10 @@
          String inputType = args[3];
 
          String operations = args[5];
+         System.out.println(outFile);
          File file = new File(inFile);
-
-         try {
+        
+        try {
              String num = "";
              Scanner in = new Scanner(file);
              while ( in .hasNextLine()) {
@@ -84,7 +105,7 @@
              System.exit(0);
          }
      }
-
+     
      static int reverseNumber(int number) {
          int reverse = 0;
          while (number != 0) {
@@ -104,6 +125,6 @@
          return reversedStr;
 
      }
-     
-
- }
+           }
+       
+       
