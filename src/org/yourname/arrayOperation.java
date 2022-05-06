@@ -1,3 +1,4 @@
+ package org.preeti; 
  import java.io.IOException;
  import java.util.ArrayList;
  import java.io.File;
@@ -11,42 +12,31 @@
   * 
   * @author KNIME GmbH
   */
- public class MyClass{
+ public class Main{
      
      private static String[] savedArgs;
      public static String[] getArgs() {
-         
-        return savedArgs;
-        
-    }
+         return savedArgs;
+         }
         
      public static void main(String args[]) {
-         
         savedArgs = args;
         ClaOperations  claOperations = new ClaOperations();
         claOperations.run(); 
-        
      }
  }
-        class ClaOperations {//extends Thread  
-            
-           void run(){
-               
-           
-         String[] args = MyClass.getArgs();
-         
+
+ class ClaOperations {//extends Thread        
+       void run(){  
+         String[] args = Main.getArgs();
          ArrayList<String> lines = new ArrayList<>();
          String output = "";
          String text = "";
-
          String inFile = args[1];
          String outFile = args[9];
          String inputType = args[3];
-
          String operations = args[5];
-         System.out.println(outFile);
          File file = new File(inFile);
-        
         try {
              String num = "";
              Scanner in = new Scanner(file);
@@ -82,8 +72,9 @@
                      }
                      lines.add(output);
                  }
+                 
              }
-
+             in.close();
 
          } catch (IOException e) {
              e.printStackTrace();
@@ -93,7 +84,6 @@
          try {
              FileWriter fileWriter = new FileWriter(outFile);
              PrintWriter printWriter = new PrintWriter(fileWriter);
-             PrintWriter out = new PrintWriter(outFile);
              lines.forEach((line) -> {
                  printWriter.printf(line + "\n");
              });
