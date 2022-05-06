@@ -5,7 +5,8 @@
  import java.io.FileWriter;
  import java.util.Scanner;
  import java.io.PrintWriter;
- import java.util.Arrays;
+ import java.lang.Thread;
+ 
 
  /**
   * Main class.
@@ -21,13 +22,13 @@
         
      public static void main(String args[]) {
         savedArgs = args;
-        ClaOperations  claOperations = new ClaOperations();
-        claOperations.run(); 
+        Thread claOperations = new ClaOperations();
+        claOperations.start();
      }
  }
 
- class ClaOperations {//extends Thread        
-       void run(){  
+ class ClaOperations extends Thread {      
+       public void run(){  
          String[] args = Main.getArgs();
          ArrayList<String> lines = new ArrayList<>();
          String output = "";
