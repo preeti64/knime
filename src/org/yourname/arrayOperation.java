@@ -2,7 +2,8 @@
  import java.io.IOException;
  import java.util.ArrayList;
  import java.io.File;
- import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
  import java.util.Scanner;
  import java.io.PrintWriter;
  import java.lang.Thread;
@@ -36,7 +37,7 @@
  class ClaOperations extends Thread {      
       public void run(){  
     	  // Getting the arguments passed as Command Line Arguments to the Main Class
-          String[] args = Main.getArgs();
+        String[] args = Main.getArgs();
           /**
            * Assigning arguments to variables for better understanding 
            * inFile will have the value at args[1]for the given input file
@@ -44,19 +45,22 @@
            * inputType specifies the type of input being passed (string|int|double)
            * operations specifies the type of operation(rev|cap|neg) for each inputtype (string|int|double)
            */
-         ArrayList<String> lines = new ArrayList<>();
-         String output = "";
-         String text = "";
-         String inFile = args[1];
-         String outFile = args[9];
-         String inputType = args[3];
-         String operations = args[5];
-         File file = new File(inFile);
-        try {
-             String num = "";
-             Scanner in = new Scanner(file);
-             while ( in .hasNextLine()) {
-                 String line = in .nextLine();
+     ArrayList<String> lines = new ArrayList<>();
+     String output = "";
+     String text = "";
+     String inFile = args[1];
+     String outFile = args[9];
+     String inputType = args[3];
+     String operations = args[5];
+     File file = new File(inFile);
+     try {
+     String num = "";
+     Scanner in = new Scanner(file);
+     if (file.length() == 0)
+		 System. out. println("File is empty!!!");
+     else {
+     while ( in .hasNextLine()) {
+    	         String line = in .nextLine();
                  //Checking for the input type of File
                  if (inputType.equals("int") || (inputType.equals("double"))) {
                      num = line;
@@ -83,19 +87,22 @@
                      }
 
                      if (operations.contains("cap")) {
-                         output = output.toUpperCase();
+                         //output = output.toUpperCase();
+                    	 output = capString(text);
 
                      }
                      lines.add(output);
                  }
+            		 }
                  
              }
              in.close();
 
-         } catch (IOException e) {
-             e.printStackTrace();
-             System.exit(0);
-         }
+		 } catch (NumberFormatException e) {
+		     System.out.println("NumberFormat Exception: invalid input string");
+		 } catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 
          try {
              FileWriter fileWriter = new FileWriter(outFile);
@@ -139,7 +146,11 @@
          return reversedStr;
 
      }
-     
+      
+      String capString(String str) {
+            String capitalizeStr = str.toUpperCase();
+            return capitalizeStr;
            }
+ }
        
        
