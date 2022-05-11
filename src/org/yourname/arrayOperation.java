@@ -73,8 +73,8 @@ import java.io.FileWriter;
 //	                         int negativenumber = Integer.parseInt(output) * -1;
 //	                         String negativeNumber = String.valueOf(negativenumber);
 //	                         output = negativeNumber;
-	                    	 output = String.valueOf(negationOfNumber(Integer.parseInt(num)));
-	
+	                    	 output = String.valueOf(negationOfNumber(Integer.parseInt(output)));
+	                         //System.out.println(output);
 	                     }
 	                     lines.add(output);
                  }
@@ -88,8 +88,8 @@ import java.io.FileWriter;
                      }
 
                      if (operations.contains("cap")) {
-                         //output = output.toUpperCase();
-                    	 output = capString(text);
+                        // output = output.toUpperCase();
+                    	 output = capString(output);
 
                      }
                      lines.add(output);
@@ -153,9 +153,8 @@ import java.io.FileWriter;
             return capitalizeStr;
            }
       
-      int negationOfNumber(int number) {
-    	  int negativenumber = (number) * -1;
-          number = negativenumber;
+     int negationOfNumber(int number) {
+   	  int negativenumber = (number) * -1;
           return negativenumber;
       }
  }
