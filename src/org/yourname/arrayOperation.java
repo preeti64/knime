@@ -63,19 +63,20 @@ import java.io.FileWriter;
     	         String line = in .nextLine();
                  //Checking for the input type of File
                  if (inputType.equals("int") || (inputType.equals("double"))) {
-                     num = line;
-                     output = num;
-                     if (operations.contains("rev")) {
-                         output = String.valueOf(reverseNumber(Integer.parseInt(num)));
-                     }
-
-                     if (operations.contains("neg")) {
-                         int negativenumber = Integer.parseInt(output) * -1;
-                         String negativeNumber = String.valueOf(negativenumber);
-                         output = negativeNumber;
-
-                     }
-                     lines.add(output);
+	                     num = line;
+	                     output = num;
+	                     if (operations.contains("rev")) {
+	                         output = String.valueOf(reverseNumber(Integer.parseInt(num)));
+	                     }
+	
+	                     if (operations.contains("neg")) {
+//	                         int negativenumber = Integer.parseInt(output) * -1;
+//	                         String negativeNumber = String.valueOf(negativenumber);
+//	                         output = negativeNumber;
+	                    	 output = String.valueOf(negationOfNumber(Integer.parseInt(num)));
+	
+	                     }
+	                     lines.add(output);
                  }
 
                  if (inputType.equals("string")) {
@@ -151,6 +152,12 @@ import java.io.FileWriter;
             String capitalizeStr = str.toUpperCase();
             return capitalizeStr;
            }
+      
+      int negationOfNumber(int number) {
+    	  int negativenumber = (number) * -1;
+          number = negativenumber;
+          return negativenumber;
+      }
  }
        
        
